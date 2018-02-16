@@ -41,15 +41,15 @@ function init() {
  * which will be called after everything has run successfully.
  */
 function loadFeed(id, cb) {
-    var feedUrl = allFeeds[id].url,
-        feedName = allFeeds[id].name,
-        feed = new google.feeds.Feed(feedUrl);
+     var feedUrl = allFeeds[id].url,
+         feedName = allFeeds[id].name;
 
-    /* Load the feed using the Google Feed Reader API.
-     * Once the feed has been loaded, the callback function
-     * is executed.
-     */
-    feed.load(function(result) {
+     $.ajax({
+       type: "POST",
+       url: 'https://rsstojson.udacity.com/parseFeed',
+       data: JSON.stringify({url: feedUrl}),
+       contentType:"application/json",
+       success: function (result, status){ 
         if (!result.error) {
             /* If loading the feed did not result in an error,
              * get started making the DOM manipulations required
@@ -77,13 +77,20 @@ function loadFeed(id, cb) {
         if (cb) {
             cb();
         }
-    });
-}
+               },
+       error: function (result, status, err){
+                 //run only the callback without attempting to parse result due to error
+                 if (cb) {
+                     cb();
+                 }
+               },
+       dataType: "json"
+     });
+ }
 
 /* Google API: Loads the Feed Reader API and defines what function
  * to call when the Feed Reader API is done loading.
  */
-google.load('feeds', '1');
 google.setOnLoadCallback(init);
 
 /* All of this functionality is heavily reliant upon the DOM, so we
@@ -112,7 +119,7 @@ $(function() {
 
     /* When a link in our feedList is clicked on, we want to hide
      * the menu, load the feed, and prevent the default action
-     * (following the link) from occuring.
+     * (following the link) from occurring.
      */
     feedList.on('click', 'a', function() {
         var item = $(this);
