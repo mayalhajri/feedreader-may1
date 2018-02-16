@@ -6,7 +6,7 @@ Testing the Feed Reader app using Javascript testing framework **Jasmine**.
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
 
-![alt text](https://i.imgur.com/cdMqfD1.png)
+![alt text](https://i.imgur.com/MZdiNqQ.png)
 
 ### How to run the this locally
 - Click "Clone in Desktop" / "Download ZIP"
