@@ -92,8 +92,8 @@ $(function() {
             loadFeed(0, done);
          });
          
-         it('feed container has atleast 1 entry', function(done) {
-            expect($('.entry').length).toBeGreaterThan(0);
+        it('feed container has atleast 1 entry', function(done) {
+            expect($('.feed .entry').length).toBeGreaterThan(0);
              done();
          });
 	});
